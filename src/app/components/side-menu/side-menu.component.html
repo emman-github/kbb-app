@@ -1,3 +1,17 @@
-<p>
-  side-menu works!
-</p>
+<ion-menu side="start" menuId="mainMenu">
+	<ion-content class="ion-padding">
+<!-- 		<ion-item button (click)="testClick()">
+  <ion-avatar slot="start">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
+  </ion-avatar>
+  <ion-label>
+    Avatar Start, Button Item
+  </ion-label>
+</ion-item> -->
+		<ion-button expand="full" (click)="openPage('daily-report')">Daily Report</ion-button>
+	  <ion-button expand="full" (click)="openPage('bill-qty-report')">Bill Qty Report</ion-button>
+	  <ion-button expand="full" (click)="openPage('login')">Sign out</ion-button>
+	</ion-content>
+</ion-menu>
+
+<ion-router-outlet main></ion-router-outlet>

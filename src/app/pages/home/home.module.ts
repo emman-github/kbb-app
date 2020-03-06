@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { SideMenuComponent } from 'src/app/components/side-menu/side-menu.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,9 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [
+    HomePage,
+    SideMenuComponent
+  ]
 })
 export class HomePageModule {}
