@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'bill-qty-reports',
     loadChildren: () => import('./pages/bill-qty-reports/bill-qty-reports.module').then( m => m.BillQtyReportsPageModule)
   },
+  {
+    path: 'add-daily-report',
+    loadChildren: () => import('./pages/add-daily-report/add-daily-report.module').then( m => m.AddDailyReportPageModule)
+  },
 
 ];
 
