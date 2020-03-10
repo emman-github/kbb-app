@@ -27,7 +27,11 @@ export class SideMenuComponent implements OnInit {
   	console.log(this.pageName)
   	if (this.pageName === 'login') {
   		this.presentLogoutAlert();
-  	} 
+  	} else {
+      await this.navController.navigateForward([this.pageName]).then(async() => {
+        await this.menuController.close();
+      });       
+    }
   }
 
 	async presentLogoutAlert() {

@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bill-qty-reports.page.scss'],
 })
 export class BillQtyReportsPage implements OnInit {
-
-  constructor() { }
+  billQtyReports: Array<any>	 
+  constructor() {
+  	this.billQtyReports = this.getBillQtyReports();
+  }
 
   ngOnInit() {
+  }
+
+  getBillQtyReports(): any {  
   }
 
 }
