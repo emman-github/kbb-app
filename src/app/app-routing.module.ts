@@ -10,7 +10,11 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },  {
+    path: 'bill-qty-reports',
+    loadChildren: () => import('./pages/bill-qty-reports/bill-qty-reports.module').then( m => m.BillQtyReportsPageModule)
   },
+
 ];
 
 @NgModule({
