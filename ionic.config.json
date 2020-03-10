@@ -1,5 +1,7 @@
 {
   "name": "kbb-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
