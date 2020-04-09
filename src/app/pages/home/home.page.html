@@ -12,49 +12,49 @@
 	<ion-item lines="none">
   	<ion-label>
   		<h2><b>Contractor:</b></h2>
-  		Juan Pedro Luna
+  		{{ project?.project_contractor }}
   	</ion-label>
   </ion-item>  
   <ion-item lines="none">
   	<ion-label>
   		<h2><b>Client:</b></h2>
-  		SM
+  		{{ project?.project_client }}
   	</ion-label>
   </ion-item>  
   <ion-item lines="none">
   	<ion-label>
   		<h2><b>Estimated cost:</b></h2>
-  		₱1000000
+  		{{ project?.project_estimated_cost }}
   	</ion-label>
   </ion-item> 
   <ion-item lines="none">
   	<ion-label>
   		<h2><b>Date accepted:</b></h2>
-  		Feb 02, 2020
+  		{{ project?.project_dateAccepted }}
   	</ion-label>
   </ion-item>
   <ion-item lines="none">
   	<ion-label>
   		<h2><b>Date implemented:</b></h2>
-  		Feb 02, 2020
+  		{{ project?.project_dateImplemented }}
   	</ion-label>
   </ion-item>
   <ion-item lines="none">
   	<ion-label>
   		<h2><b>Date completed:</b></h2>
-  		Feb 02, 2020
+  		{{ project?.project_dateCompleted }}
   	</ion-label>
   </ion-item>
   <ion-item lines="none">
   	<ion-label>
   		<h2><b>No. of days:</b></h2>
-  		100
+  		{{ project?.project_no_days }}
   	</ion-label>
   </ion-item>
   <ion-item lines="none">
   	<ion-label>
   		<h2><b>Foreman:</b></h2>
-  		Juan Pedro Luna
+  		{{ mobileAccount?.ma_foreman_name }}
   	</ion-label>
   </ion-item>
 </ion-content> 
