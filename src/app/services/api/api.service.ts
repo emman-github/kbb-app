@@ -14,31 +14,29 @@ export class ApiService {
   	//this.baseUrl = 'http://kbb-back-end.000webhostapp.com/index.php/Welcome/';
   }
 
-  login(params): Promise<any> {  
-    const promise = new Promise((resolve, reject) => { 
-      let url: string = this.baseUrl + 'login';  
- 
-      this.httpClient.post(url, params).subscribe(response => {
-        resolve(response);
-      }, error => {
-        alert(JSON.stringify(error));
-      });
-    });
-
-    return promise;
+  login(params): Promise<any> {   
+    return this.httpRequest(params, 'login');
   }  
 
   getProject(params): Promise<any> {  
-    const promise = new Promise((resolve, reject) => { 
-      let url: string = this.baseUrl + 'select_project';  
+    return this.httpRequest(params, 'select_project');
+  }    
+
+  getBillOfQtys(params): Promise<any> {    
+    return this.httpRequest(params, 'get_bill_of_quantities');
+  }   
+
+  httpRequest(params, functionName): Promise<any> {
+    return new Promise((resolve, reject) => { 
+      let url: string = this.baseUrl + functionName;  
  
-      this.httpClient.post(url, params).subscribe(response => {
+      this.httpClient.post(url, params).subscribe((response: any) => {
+        // response = JSON.parse(response);
+        console.log(response);
         resolve(response);
       }, error => {
         alert(JSON.stringify(error));
       });
     });
-
-    return promise;
-  }   
+  }
 }

@@ -29,14 +29,15 @@ export class HomePage {
 
   async getProject() {
   	this.storage.get('mobile_account').then(mobileAccount => {
-  		mobileAccount = JSON.parse(mobileAccount);
+      console.log(mobileAccount);
+  		// mobileAccount = JSON.parse(mobileAccount);
   		this.mobileAccount = mobileAccount;
   		console.log(mobileAccount);
   		let params = new FormData();  
     	params.append('project_desktop_id', mobileAccount.ma_project_id); 
 
   		this.apiService.getProject(params).then(project => {
-
+        console.log(project);
       if (project.length > 0) {
         // this.loading.dismiss();  
       	this.project = project[0];

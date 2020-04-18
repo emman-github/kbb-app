@@ -8,38 +8,11 @@
 </ion-header>
 
 <ion-content>
-	<ion-item>
+	<ion-item *ngFor="let billOfQty of billOfQtys">
 		<ion-label>
-			<h1>Precast</h1>
-			<p>Qty: 15 PC</p>
-			<p>Works Completed: 10</p>
-			<ion-button><ion-icon name="add"></ion-icon></ion-button>
-			<ion-button><ion-icon name="remove"></ion-icon></ion-button>
-		</ion-label>
-	</ion-item>
-	<ion-item>
-		<ion-label>
-			<h1>Snoring</h1>
-			<p>Qty: 15 PC</p>
-			<p>Works Completed: 10</p>
-			<ion-button><ion-icon name="add"></ion-icon></ion-button>
-			<ion-button><ion-icon name="remove"></ion-icon></ion-button>
-		</ion-label>
-	</ion-item>
-	<ion-item>
-		<ion-label>
-			<h1>Precast</h1>
-			<p>Qty: 15 PC</p>
-			<p>Works Completed: 10</p>
-			<ion-button><ion-icon name="add"></ion-icon></ion-button>
-			<ion-button><ion-icon name="remove"></ion-icon></ion-button>
-		</ion-label>
-	</ion-item>
-	<ion-item>
-		<ion-label>
-			<h1>Snoring</h1>
-			<p>Qty: 15 PC</p>
-			<p>Works Completed: 10</p>
+			<h1> {{ billOfQty?.boq_work_description }} </h1>
+			<p>Qty: {{ billOfQty?.boq_quantity_of_work }} {{ boq_unit }} </p>
+			<p>Works Completed: {{ billOfQty?.boq_works_completed }} </p>
 			<ion-button><ion-icon name="add"></ion-icon></ion-button>
 			<ion-button><ion-icon name="remove"></ion-icon></ion-button>
 		</ion-label>

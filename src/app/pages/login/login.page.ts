@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
   	this.apiService.login(params).then(response => {
       console.log(response.length);
       if (response.length > 0) {
-        this.storage.set('mobile_account', JSON.stringify(response[0]));
+        this.storage.set('mobile_account', response[0]);
         this.loading.dismiss();
         this.navController.navigateForward(['/home']);
       } else {
