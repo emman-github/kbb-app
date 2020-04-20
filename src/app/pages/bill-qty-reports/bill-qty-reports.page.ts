@@ -13,6 +13,7 @@ import { Storage } from '@ionic/storage';
 })
 export class BillQtyReportsPage implements OnInit {
   billOfQtys: Array<any>	 
+  billOfQtyWorksCompleted: any;
   constructor(
     private apiService: ApiService,
     private storage: Storage,
@@ -35,10 +36,81 @@ export class BillQtyReportsPage implements OnInit {
 
       this.apiService.getBillOfQtys(params).then(response => {
         this.billOfQtys = response;
+        // this.billOfQtyWorksCompleted = response[0].boq_works_completed;
+        console.log(this.billOfQtyWorksCompleted);
         console.log(response);
       });   
     });
  
+  }
+
+  add(billOfQty): any {  
+    console.log(billOfQty.boq_works_completed_temp);
+    if (parseInt(billOfQty.boq_works_completed_temp) < parseInt(billOfQty.boq_quantity_of_work)) {
+      billOfQty.boq_works_completed_temp++; 
+       console.log(billOfQty.boq_works_completed_temp);
+    }  
+
+    console.log(billOfQty.boq_works_completed_temp);
+      // let params = new FormData();
+      // params.append('boqh_day', billOfQty.boqh_day);
+      // params.append('boqh_datetime', billOfQty.ma_project_id);
+      // params.append('boqh_works_completed', billOfQty.ma_project_id);
+      // params.append('boqh_boq_id', billOfQty.boqh_boq_id);
+
+      // this.apiService.getBillOfQtys(params).then(response => {
+      //   this.billOfQtys = response;
+      //   console.log(response);
+      // });      
+  }
+
+  subtract(billOfQty): any {   
+
+    if (parseInt(billOfQty.boq_works_completed_temp) > 0) {
+      billOfQty.boq_works_completed_temp--; 
+    }       
+
+    console.log(billOfQty.boq_works_completed_temp);
+  }
+
+  isZero(billOfQty): any {
+    // console.log(billOfQty.boq_works_completed);
+    if (billOfQty.boq_works_completed_temp === undefined) {
+      billOfQty.boq_works_completed_temp = billOfQty.boq_works_completed;
+    }
+    return parseInt(billOfQty.boq_works_completed_temp) === 0;
+  }
+
+  isMax(billOfQty): any {
+    // console.log(billOfQty.boq_works_completed);
+    if (billOfQty.boq_works_completed_temp === undefined) {
+      billOfQty.boq_works_completed_temp = billOfQty.boq_works_completed;
+    }
+    return parseInt(billOfQty.boq_works_completed_temp) === parseInt(billOfQty.boq_quantity_of_work);
+  }  
+
+  hasBeenUpdated(billOfQty): any {
+    return parseInt(billOfQty.boq_works_completed_temp) === parseInt(billOfQty.boq_works_completed);
+  }
+
+  update(billOfQty): any {
+    console.log(billOfQty);
+    console.log(new Date().toLocaleString());
+    let dateTime = new Date().getFullYear() + '-' + new Date().getMonth() + '-' + new Date().getDate() + ' ' + new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
+ 
+    console.log(dateTime);
+      let params = new FormData();
+      params.append('boqh_day', '0');
+      params.append('boqh_datetime', dateTime);
+      params.append('boqh_works_completed', billOfQty.boq_works_completed_temp);
+      params.append('boqh_boq_id', billOfQty.boq_desktop_id);
+
+      console.log(params);
+
+      this.apiService.updateBillOfQuantity(params).then(response => {
+      
+        console.log(response);
+      });      
   }
 
 }

@@ -26,6 +26,10 @@ export class ApiService {
     return this.httpRequest(params, 'get_bill_of_quantities');
   }   
 
+  updateBillOfQuantity(params): Promise<any> {
+    return this.httpRequest(params, 'save_bill_of_quantity_history');   
+  }
+
   httpRequest(params, functionName): Promise<any> {
     return new Promise((resolve, reject) => { 
       let url: string = this.baseUrl + functionName;  
