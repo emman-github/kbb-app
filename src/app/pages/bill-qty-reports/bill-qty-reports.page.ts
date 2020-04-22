@@ -108,7 +108,9 @@ export class BillQtyReportsPage implements OnInit {
       console.log(params);
 
       this.apiService.updateBillOfQuantity(params).then(response => {
-      
+        alert('History has been saved.')
+        billOfQty.boq_works_completed = billOfQty.boq_works_completed_temp;
+        billOfQty.boq_works_completed_temp = undefined;
         console.log(response);
       });      
   }
