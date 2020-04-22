@@ -44,9 +44,13 @@ export class LoginPage implements OnInit {
   	this.apiService.login(params).then(response => {
       console.log(response.length);
       if (response.length > 0) {
-        this.storage.set('mobile_account', response[0]);
-        this.loading.dismiss();
+        this.storage.set('mobile_account', response[0]).then(() => {
+          this.username = '';
+          this.password = '';
+          this.loading.dismiss();
         this.navController.navigateForward(['/home']);
+        });
+        
       } else {
         this.loading.dismiss();
         alert('Incorrect username and password');

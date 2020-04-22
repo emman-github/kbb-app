@@ -10,7 +10,7 @@
 <ion-content>
 	<ion-item *ngFor="let billOfQty of billOfQtys">
 		<ion-label>
-			<h1> {{ billOfQty?.boq_work_description }} </h1>
+			<ion-text><h1> {{ billOfQty?.boq_work_description }} </h1></ion-text>
 			<p>Qty: {{ billOfQty?.boq_quantity_of_work }} {{ boq_unit }} </p>
 			<p>Works Completed: {{ billOfQty?.boq_works_completed_temp }} </p>
 			<ion-button (click)="add(billOfQty)" [disabled]="isMax(billOfQty)"><ion-icon name="add"></ion-icon></ion-button>
