@@ -10,8 +10,8 @@ export class ApiService {
   constructor(
   	private httpClient: HttpClient
   ) {
-  	this.baseUrl = 'http://localhost/kbb-back-end/index.php/Welcome/';
-  	//this.baseUrl = 'http://kbb-back-end.000webhostapp.com/index.php/Welcome/';
+  	// this.baseUrl = 'http://localhost/kbb-back-end/index.php/Welcome/';
+  	this.baseUrl = 'http://kbb-back-end.000webhostapp.com/index.php/Welcome/';
   }
 
   login(params): Promise<any> {   

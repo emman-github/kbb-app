@@ -96,7 +96,7 @@ export class BillQtyReportsPage implements OnInit {
   update(billOfQty): any {
     console.log(billOfQty);
     console.log(new Date().toLocaleString());
-    let dateTime = new Date().getFullYear() + '-' + new Date().getMonth() + '-' + new Date().getDate() + ' ' + new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
+    let dateTime = new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() + ' ' + new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
  
     console.log(dateTime);
       let params = new FormData();
@@ -104,9 +104,10 @@ export class BillQtyReportsPage implements OnInit {
       params.append('boqh_datetime', dateTime);
       params.append('boqh_works_completed', billOfQty.boq_works_completed_temp);
       params.append('boqh_boq_id', billOfQty.boq_desktop_id);
+      params.append('boq_project_id', billOfQty.boq_project_id);
 
       console.log(params);
-
+      // return;
       this.apiService.updateBillOfQuantity(params).then(response => {
         alert('History has been saved.')
         billOfQty.boq_works_completed = billOfQty.boq_works_completed_temp;
