@@ -14,6 +14,7 @@ import { Storage } from '@ionic/storage';
 export class BillQtyReportsPage implements OnInit {
   billOfQtys: Array<any>	 
   billOfQtyWorksCompleted: any;
+  skeletonItems: any;
   constructor(
     private apiService: ApiService,
     private storage: Storage,
@@ -22,6 +23,7 @@ export class BillQtyReportsPage implements OnInit {
     private loadingController: LoadingController, 
   ) {
   	this.getBillOfQtys();
+    this.skeletonItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   }
 
   ngOnInit() {

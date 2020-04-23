@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding-end">
 	<ion-item *ngFor="let billOfQty of billOfQtys">
 		<ion-label>
 			<ion-text><h1> {{ billOfQty?.boq_work_description }} </h1></ion-text>
@@ -19,4 +19,14 @@
 		</ion-label>
 		<ion-button slot="end" (click)="update(billOfQty)" [disabled]="hasBeenUpdated(billOfQty)">Update</ion-button>
 	</ion-item>
+	<div *ngIf="!billOfQtys">
+		<ion-item *ngFor="let skeletonItem of skeletonItems">
+			<ion-label>
+				<ion-text><h1> <ion-skeleton-text animated style="width: 50%; height: 20px;"></ion-skeleton-text> </h1></ion-text>
+				<p><ion-skeleton-text animated style="width: 20%; height: 12px;"></ion-skeleton-text> </p>
+				<p><ion-skeleton-text animated style="width: 45%; height: 12px;"></ion-skeleton-text> </p>  
+			</ion-label> 
+		</ion-item>		
+	</div>
+
 </ion-content>
