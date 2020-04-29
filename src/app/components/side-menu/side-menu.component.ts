@@ -77,4 +77,8 @@ export class SideMenuComponent implements OnInit {
     await alert.present();
   }
 
+  onLogoImageLoad() {
+    // alert(1);
+  }
+
 }

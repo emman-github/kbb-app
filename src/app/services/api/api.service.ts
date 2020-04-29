@@ -10,8 +10,8 @@ export class ApiService {
   constructor(
   	private httpClient: HttpClient
   ) {
-  	// this.baseUrl = 'http://localhost/kbb-back-end/index.php/Welcome/';
-  	this.baseUrl = 'http://kbb-back-end.000webhostapp.com/index.php/Welcome/';
+  	this.baseUrl = 'http://localhost/kbb-back-end/index.php/Welcome/';
+  	// this.baseUrl = 'http://kbb-back-end.000webhostapp.com/index.php/Welcome/';
   }
 
   login(params): Promise<any> {   
@@ -29,6 +29,26 @@ export class ApiService {
   updateBillOfQuantity(params): Promise<any> {
     return this.httpRequest(params, 'save_bill_of_quantity_history');   
   }
+
+  getSchedulesOfWork(params): Promise<any> {
+    return this.httpRequest(params, 'get_schedules_of_work');   
+  }
+
+  getWorkers(params): Promise<any> {
+    return this.httpRequest(params, 'get_workers');   
+  }  
+
+  submitReport(params): Promise<any> {
+    return this.httpRequest(params, 'submit_report');   
+  }
+
+  getCurrentDay(params): Promise<any> {
+    return this.httpRequest(params, 'get_current_day');   
+  }      
+
+  saveSpecificManpower(params): Promise<any> {
+    return this.httpRequest(params, 'save_specific_manpower');   
+  }         
 
   httpRequest(params, functionName): Promise<any> {
     return new Promise((resolve, reject) => { 

@@ -1,19 +1,38 @@
 <ion-header>
   <ion-toolbar>
   	<ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-back-button defaultHref="/home" color="primary"></ion-back-button>
     </ion-buttons>
-    <ion-title>Add Daily Report</ion-title>
+    <ion-title>New Daily Accomplishment</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> 
-  <h2 >Manpower</h2>
-<ion-item>
-    <ion-label>Cierra Vega</ion-label>
-    <ion-checkbox slot="end"></ion-checkbox>
+<ion-content class="">   
+      <h2 class="ion-margin-start ion-margin-top">Day: {{ day }} </h2>
+       
+
+  <ion-list class="ion-padding">
+
+  <ion-item class="ion-no-padding">
+    <ion-label>Schedule of work</ion-label>
+    <ion-select  [(ngModel)]="selectedScheduleOfWork" (ionChange)="onScheduleOfWorkChange()">
+      <ion-select-option *ngFor="let scheduleOfWork of schedulesOfWork" [value]="scheduleOfWork">{{ scheduleOfWork.sow_description }}</ion-select-option>
+    </ion-select>
   </ion-item>
-  <ion-item>
+</ion-list> 
+   <ion-card>
+    <ion-card-header>
+      <ion-card-title>Workers</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-no-padding ion-padding-end ion-padding-bottom">    
+  <ion-item *ngFor="let worker of workers">
+    <ion-label>{{ worker.worker_name }}</ion-label>
+    <ion-checkbox slot="end" (ionChange)="onCheckWorker(worker)"></ion-checkbox>
+  </ion-item>
+      </ion-card-content>
+   
+  </ion-card>
+<!--   <ion-item>
     <ion-label>North Sias</ion-label>
     <ion-checkbox slot="end"></ion-checkbox>
   </ion-item>
@@ -32,65 +51,77 @@
   <ion-item>
     <ion-label>Benjie Balila</ion-label>
     <ion-checkbox slot="end"></ion-checkbox>
-  </ion-item>
-
-  <ion-grid class="ion-margin">
-    <h2>Vehicle</h2>
-    <ion-row>
-      <ion-col size="12">
-        <ion-item>
+  </ion-item> -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Vehicle</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>    
+      <ion-item>
           <ion-label position="stacked">Type</ion-label>
-          <ion-input></ion-input>
+          <ion-input [(ngModel)]="vehicleType" ></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Plate No.:</ion-label>
-          <ion-input></ion-input>
+          <ion-input [(ngModel)]="vehiclePlateNumber"></ion-input>
         </ion-item>
-      </ion-col>
-    </ion-row>
-    <h2>Odometer</h2>
-    <ion-row>
-      <ion-col size="12">
+      </ion-card-content>
+   
+  </ion-card>
+
+   <ion-card>
+    <ion-card-header>
+      <ion-card-title>Odometer</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>    
         <ion-item>
-          <ion-label position="stacked">Start:</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">End:</ion-label>
-          <ion-input></ion-input>
-        </ion-item> 
-      </ion-col> 
-    </ion-row> 
-    <h2>Overtime</h2>
-    <ion-row>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label position="stacked">Start:</ion-label>
-          <ion-input></ion-input>
+          <ion-label position="stacked">Start</ion-label>
+          <ion-input [(ngModel)]="odometerStart" ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">End:</ion-label>
-          <ion-input></ion-input>
-        </ion-item> 
-      </ion-col> 
-    </ion-row> 
-    <h2>Validation</h2>
-    <ion-row>
-      <ion-col size="12">
+          <ion-label position="stacked">End</ion-label>
+          <ion-input [(ngModel)]="odometerEnd" ></ion-input>
+        </ion-item>
+       </ion-card-content>
+   
+  </ion-card>
+
+   <ion-card>
+    <ion-card-header>
+      <ion-card-title>Overtime</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>   
         <ion-item>
-          <ion-label position="stacked">Name:</ion-label>
-          <ion-input></ion-input>
+          <ion-label position="stacked">Start</ion-label>
+          <ion-input [(ngModel)]="overtimeStart" ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">Date:</ion-label>
-          <ion-input></ion-input>
-        </ion-item> 
-      </ion-col> 
-    </ion-row> 
-    
-  </ion-grid>
+          <ion-label position="stacked">End</ion-label>
+          <ion-input [(ngModel)]="overtimeEnd" ></ion-input>
+        </ion-item>
+       </ion-card-content>
+   
+  </ion-card>
+
+   <ion-card>
+    <ion-card-header>
+      <ion-card-title>Others</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>   
+        <ion-item>
+          <ion-label position="stacked">Area remarks</ion-label>
+          <ion-input [(ngModel)]="areaRemarks" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Material used</ion-label>
+          <ion-input [(ngModel)]="materialUsed" ></ion-input>
+        </ion-item>
+       </ion-card-content>
+   
+  </ion-card>
+
 
 </ion-content>
 <ion-footer class="ion-no-padding ion-no-margin">
-	<ion-button expand="full">Submit</ion-button>
+	<ion-button expand="full" (click)="submit()">Submit</ion-button>
 </ion-footer>

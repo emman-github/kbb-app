@@ -8,8 +8,8 @@
     Avatar Start, Button Item
   </ion-label>
 </ion-item> -->
-  <ion-img id="logo-img" src="assets/imgs/logo.jpg"></ion-img>
-<!--   <ion-item (click)="openPage('add-daily-report')" button>
+  <ion-img id="logo-img" src="assets/imgs/logo.jpg" (ionImgDidLoad)="onLogoImageLoad()"></ion-img>
+  <ion-item (click)="openPage('add-daily-report')" button>
     <ion-ripple-effect></ion-ripple-effect>
     <ion-avatar slot="start">
       <img src="../assets/icon/report.png">
@@ -17,14 +17,14 @@
     <ion-label color="primary">
       Daily Accomplishment
     </ion-label>
-  </ion-item> -->
+  </ion-item>
   <ion-item (click)="openPage('bill-qty-reports')" button> 
     <ion-ripple-effect></ion-ripple-effect>
     <ion-avatar slot="start">
       <img src="../assets/icon/analytics.png">
     </ion-avatar>
     <ion-label color="primary">
-      Reports
+      Bill Of Quantity
     </ion-label>
   </ion-item>
   <ion-item (click)="openPage('login')" button>  
