@@ -58,17 +58,24 @@ export class SideMenuComponent implements OnInit {
         }, {
           text: 'Okay',
           handler: async() => {
+
+
+
             this.loading = await this.loadingController.create({
               message: 'Signing out . . . '
             });
             await this.loading.present();
 
- this.storage.set('mobile_account', null).then(async() => {
-				  	await this.navController.navigateForward([this.pageName]).then(async() => {
+             this.storage.clear().then(() => {
+                this.storage.set('mobile_account', null).then(async() => {
+            await this.navController.navigateForward([this.pageName]).then(async() => {
               this.loading.dismiss();
-				  		await this.menuController.close();
-				  	}); 
+              await this.menuController.close();
+            }); 
                 })
+             });
+
+
           }
         }
       ]

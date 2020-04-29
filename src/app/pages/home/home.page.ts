@@ -14,11 +14,13 @@ import { Storage } from '@ionic/storage';
 export class HomePage {
 	project: any;
 	mobileAccount: any;
+    loading: any;
 
   constructor(
   	private apiService: ApiService,
   	private storage: Storage,
-  	private menuController: MenuController
+  	private menuController: MenuController,
+    private loadingController: LoadingController 
   ) {
 
   }
@@ -28,6 +30,11 @@ export class HomePage {
   }
 
   async getProject() {
+      this.loading = await this.loadingController.create({
+      message: 'Loading . . . '
+    });
+
+    await this.loading.present();
   	this.storage.get('mobile_account').then(mobileAccount => {
       console.log(mobileAccount);
   		// mobileAccount = JSON.parse(mobileAccount);
@@ -42,9 +49,11 @@ export class HomePage {
         // this.loading.dismiss();  
       	this.project = project[0];
       	console.log(this.project.project_contractor);
+        this.loading.dismiss();
       } else {
         // this.loading.dismiss();
         alert('You have no current project');
+        this.loading.dismiss();
       }
   		});
   	});
