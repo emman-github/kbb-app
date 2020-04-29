@@ -35,17 +35,27 @@ export class AddDailyReportPage implements OnInit {
     private loadingController: LoadingController, 
   ) {
   	this.checkedWorkers = [];
-  	this.getSchedulesOfWork();
-  	this.getWorkers();
-  	this.getCurrentDay();
+
    //  this.skeletonItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+  	this.loading = await this.loadingController.create({
+      message: ''
+    });
 
+    await this.loading.present().then(async() => {
+	  	await this.getSchedulesOfWork().then(async() => {
+	  		await this.getWorkers().then(async() => {
+	  			await this.getCurrentDay().then(async() => {
+	  				await this.loading.dismiss();
+	  			});
+	  		});
+	  	});     	
+    }); 
   }
 
-  getSchedulesOfWork(): any {  
+  async getSchedulesOfWork(): Promise<any> {  
     this.storage.get('mobile_account').then(mobileAccount => {  
 
       let params = new FormData();
@@ -63,7 +73,7 @@ export class AddDailyReportPage implements OnInit {
  
   }
 
-  getWorkers(): any {  
+  async getWorkers(): Promise<any> {  
     this.storage.get('mobile_account').then(mobileAccount => {  
 
       let params = new FormData();
@@ -71,6 +81,10 @@ export class AddDailyReportPage implements OnInit {
 
       this.apiService.getWorkers(params).then(response => {
         this.workers = response;
+
+        for (let i = 0; i < this.workers.length; i++) {
+        	this.workers[i].is_checked = false;
+        }
         // this.billOfQtyWorksCompleted = response[0].boq_works_completed;
         console.log(this.workers);
         console.log(response);
@@ -96,7 +110,7 @@ export class AddDailyReportPage implements OnInit {
   	console.log(this.checkedWorkers);
   }
 
-  async submit() {
+  async submit(): Promise<any> {
   	this.loading = await this.loadingController.create({
       message: 'Submitting. . . '
     });
@@ -142,6 +156,19 @@ export class AddDailyReportPage implements OnInit {
         }  
 
         this.loading.dismiss().then(() => {
+        	this.checkedWorkers = [];
+        	this.selectedScheduleOfWork = undefined;  
+        	this.vehicleType = undefined; 
+        	this.vehiclePlateNumber = undefined; 
+        	this.overtimeStart = undefined; 
+        	this.overtimeEnd = undefined;
+        	this.odometerStart = undefined; 
+        	this.odometerEnd = undefined; 
+        	this.areaRemarks = undefined; 
+        	this.materialUsed = undefined;
+        	        for (let i = 0; i < this.workers.length; i++) {
+        	this.workers[i].is_checked = false;
+        }
 			        alert('Daily Accomplishment has been saved');
 			      });
       });   
@@ -152,7 +179,7 @@ export class AddDailyReportPage implements OnInit {
     });  	
   }
 
-  getCurrentDay() {
+  async getCurrentDay(): Promise<any> {
     this.storage.get('mobile_account').then(mobileAccount => {  
     	let dateTime = new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() + ' ' + new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
       let params = new FormData();
@@ -164,6 +191,14 @@ export class AddDailyReportPage implements OnInit {
       	console.log(this.day);
       });   
     });  	
+  }
+
+  hasValues() { 
+  	if (this.selectedScheduleOfWork && this.vehicleType && this.vehiclePlateNumber && this.checkedWorkers && this.odometerStart && this.odometerEnd &&  this.overtimeStart && this.overtimeEnd && this.areaRemarks && this.materialUsed) {
+      return false;
+  	}
+
+  	return true;
   }
 
 }

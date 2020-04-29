@@ -1,13 +1,19 @@
+
+  
+
 <app-side-menu></app-side-menu>
 
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-menu-button color="primary" slot="start" auto-hide="false"></ion-menu-button>
     <ion-title>Home</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="getProject()"><ion-icon name="refresh-outline"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
+ 
+<ion-content *ngIf="project">
 <!-- 	<h1 class="ion-margin-start ion-text-center">Project Info</h1> -->
 <ion-card>
   <ion-card-header> 
@@ -76,4 +82,4 @@
   </ion-item>
 </ion-card-content>
 </ion-card>
-</ion-content> 
+</ion-content>  

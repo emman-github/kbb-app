@@ -26,12 +26,18 @@ export class HomePage {
   }
 
   async ngOnInit() {
-  	await this.getProject();
+  	 await this.getProject();
+  }
+
+  async ionViewWillEnter() {
+   
   }
 
   async getProject() {
+    this.project = null;
+    console.log('getProject()');
       this.loading = await this.loadingController.create({
-      message: 'Loading . . . '
+      message: ''
     });
 
     await this.loading.present();

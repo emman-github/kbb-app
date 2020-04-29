@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="">   
+<ion-content>   
       <h2 class="ion-margin-start ion-margin-top">Day: {{ day }} </h2>
        
 
@@ -27,7 +27,7 @@
     <ion-card-content class="ion-no-padding ion-padding-end ion-padding-bottom">    
   <ion-item *ngFor="let worker of workers">
     <ion-label>{{ worker.worker_name }}</ion-label>
-    <ion-checkbox slot="end" (ionChange)="onCheckWorker(worker)"></ion-checkbox>
+    <ion-checkbox slot="end" (ionChange)="onCheckWorker(worker)" [(ngModel)]="worker.is_checked"></ion-checkbox>
   </ion-item>
       </ion-card-content>
    
@@ -123,5 +123,5 @@
 
 </ion-content>
 <ion-footer class="ion-no-padding ion-no-margin">
-	<ion-button expand="full" (click)="submit()">Submit</ion-button>
+	<ion-button expand="full" (click)="submit()" [disabled]="hasValues()">Submit</ion-button>
 </ion-footer>
