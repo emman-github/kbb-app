@@ -53,6 +53,8 @@ export class LoginPage implements OnInit {
         
       } else {
         this.loading.dismiss();
+        this.username = '';
+        this.password = '';
         alert('Incorrect username and password');
       }
   	});
