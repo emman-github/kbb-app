@@ -66,4 +66,8 @@ export class HomePage {
   	
   } 
 
+  isNotYetCompleted(project) {
+    return project.project_dateCompleted.includes('1753');
+  }
+
 }

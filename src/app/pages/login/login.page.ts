@@ -57,7 +57,12 @@ export class LoginPage implements OnInit {
         this.password = '';
         alert('Incorrect username and password');
       }
-  	});
+  	}).catch(error => {
+         alert(JSON.stringify(error));
+         this.loading.dismiss();
+         this.username = '';
+        this.password = '';
+    });
   } 
 
 }

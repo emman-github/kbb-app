@@ -65,7 +65,8 @@
   <ion-item lines="none">
   	<ion-label>
   		<ion-card-subtitle>Date completed</ion-card-subtitle>
-  		{{ project?.project_dateCompleted | date: 'longDate' }}
+  		<ion-text *ngIf="isNotYetCompleted(project)">NOT YET</ion-text>
+      <ion-text *ngIf="!isNotYetCompleted(project)">{{ project?.project_dateCompleted | date: 'mediumDate' }}</ion-text>
   	</ion-label>
   </ion-item>
   <ion-item lines="none">

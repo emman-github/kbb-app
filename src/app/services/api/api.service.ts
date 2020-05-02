@@ -10,8 +10,9 @@ export class ApiService {
   constructor(
   	private httpClient: HttpClient
   ) {
-  	// this.baseUrl = 'http://localhost/kbb-back-end/index.php/Welcome/';
-  	this.baseUrl = 'https://kbb-back-end.000webhostapp.com/index.php/Welcome/';
+    // this.baseUrl = 'http://192.168.43.84/kbb-back-end/index.php/Welcome/';
+  	this.baseUrl = 'http://localhost/kbb-back-end/index.php/Welcome/';
+  	// this.baseUrl = 'https://kbb-back-end.000webhostapp.com/index.php/Welcome/';
   }
 
   login(params): Promise<any> {   
@@ -59,7 +60,8 @@ export class ApiService {
         console.log(response);
         resolve(response);
       }, error => {
-        alert(JSON.stringify(error));
+        reject(error);
+        // alert(JSON.stringify(error));
       });
     });
   }
